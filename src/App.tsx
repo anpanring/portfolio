@@ -1,40 +1,78 @@
-import { useState, useRef, useEffect, forwardRef } from 'react';
+import { useState, useRef } from 'react';
+
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import './App.css';
+import Section from './Section';
+
+import './styles/App.css';
+// import projectData from '../data/projects.json';
+
+type Project = {
+    name: string;
+    id: number;
+    description: string;
+    source?: string;
+    link?: string;
+    images?: string[];
+    tools?: string[];
+}
 
 const navs = ["home", "projects", "design", "contact"];
 
-interface SectionProps {
-    name: string;
-    children: React.ReactNode;
-    setCurrentSection: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const Section = forwardRef<HTMLElement, SectionProps>(({ name, children, setCurrentSection }, ref) => {
-    const refObject = ref as React.RefObject<HTMLElement>;
-    const [height, setHeight] = useState(refObject.current ? refObject.current.getBoundingClientRect().y : Number.MAX_VALUE);
-
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
-            setHeight(refObject.current ?
-                refObject.current.getBoundingClientRect().y : 0);
-            if(height < 70) setCurrentSection(navs.indexOf(name));
-        });
-    }, [height]);
-
-    return (
-        <article id={name} ref={ref}>
-            {children}
-        </article>
-    );
-});
+const Projects: Project[] = [
+    {
+        name: "Dejumbler",
+        id: 0,
+        description: "Full-stack webapp I made to manage my lists of different type of media in one place. Currently, it allows users to create and organize lists of music, movies, and books.",
+        source: "https://github.com/anpanring/dejumbler",
+        link: "https://dejumbler.com/",
+        images: ["dejumbler-text-logo.png", "all-lists.png", "mobile-view.png"],
+        tools: ["Javascript", "Typescript", "Next.js", "MongoDB", "Mongoose", "GSAP"],
+    },
+    {
+        name: "Chatterbox",
+        id: 1,
+        description: "Implementation of a forward-secure, end-to-end encrypted messaging client inspired by Signal protocol.",
+        images: ["go.png"],
+        tools: ["Go"]
+    },
+    {
+        name: "Monopoly",
+        id: 2,
+        description: "A Monopoly game made with a group of friends for a class project. I was responsible for the front-end and game logic.",
+        images: ["monopoly.jpg"],
+        tools: ["Java", "Swing", "Maven"]
+    },
+    {
+        name: "Portfolio",
+        id: 3,
+        description: "This website!",
+        source: "https://github.com/anpanring/portfolio",
+        images: ["spider-man.jpg"],
+        tools: ["Typescript", "React", "Vite"]
+    },
+    {
+        name: "Skint App",
+        id: 4,
+        description: "Beep bop",
+    },
+    {
+        name: "Magazine",
+        id: 5,
+        description: "Beep bop",
+    },
+    {
+        name: "Custom Font",
+        id: 6,
+        description: "Beep bop",
+    },
+]
 
 function App() {
-    const [currentProject, setCurrentProject] = useState(0);
+    const [currentProject, setCurrentProject] = useState(-1);
     const [currentSection, setCurrentSection] = useState(0);
 
     const navRef = useRef<HTMLElement>(null);
@@ -45,14 +83,20 @@ function App() {
 
     // const currNav = useContext(NavContext);
 
-    // const [projectsHeight, setProjectsHeight] = useState(projectsRef.current ? projectsRef.current.getBoundingClientRect().y : Number.MAX_VALUE);
-
     useGSAP(() => {
         gsap.from(".project-description", {
             y: "-20",
             opacity: 0,
-            duration: 0.1,
+            duration: 0.5,
         });
+
+        // return () => {
+        //     gsap.to(".project-description", {
+        //         y: "-20",
+        //         opacity: 0,
+        //         duration: 0.1,
+        //     });
+        // }
     }, [currentProject]);
 
     // useEffect(() => {
@@ -124,7 +168,7 @@ function App() {
                             </a>
                         </li>
                     })}
-                    <li>{currentSection}</li>
+                    {/* <li>{currentSection}</li> */}
                     {/* <li><a id="home-link" href="#home" className={``}>Jack Dempsey</a></li>
                     <li><a id="projects-link" href="#projects">Projects</a></li>
                     <li><a id="design-link" href="#design">Design</a></li>
@@ -134,41 +178,90 @@ function App() {
 
             <div className="content">
                 <Section name="home" ref={homeRef} setCurrentSection={setCurrentSection}>
-                    <h1>Welcome</h1>
-                    <p>Hi, I'm Jack. I'm currently a senior at NYU studying Computer Science w/ minors in Psychology and Studio Art.</p>
-                    <p></p>
+                    {/* <h1>Welcome</h1> */}
+                    <p>Hi, I'm Jack! I'm currently a senior at NYU studying Computer Science, with minors in Psychology and Studio Art.
+                        I will be graduating in May 2024 and am currently searching for software engineering opportunities.
+                    </p>
+                    <p>I love learning and currently have interests in front-end development, computer security, and graphic design.</p>
                 </Section>
 
                 <Section name="projects" ref={projectsRef} setCurrentSection={setCurrentSection}>
                     <h1>Projects</h1>
+                    <p>Some of the computer science-related projects I've worked on in my personal time and in school.</p>
                     <div className="project-container">
-                        <div className="project" onClick={() => setCurrentProject(1)}>
-                            <p>Project 1</p>
-                        </div>
-                        <div className="project" onClick={() => setCurrentProject(2)}>
-                            <p>Project 2</p>
-                        </div>
-                        <div className="project" onClick={() => setCurrentProject(3)}>
-                            <p>Project 3</p>
-                        </div>
+                        {Projects.map((project: Project) => {
+                            if (project.id < 4) {
+                                return (
+                                    <div>
+                                        <div
+                                            className={`project ${currentProject == project.id ? "selected-project" : ""}`}
+                                            onClick={() => setCurrentProject(currentProject == project.id ? -1 : project.id)}>
+                                            <div className='block' style={{
+                                                backgroundImage: `url(projects/${project.name.toLowerCase()}/${project.images?.[0]})`,
+                                                backgroundSize: "cover",
+                                            }}></div>
+                                            <div className='text'>{project.name}</div>
+                                        </div>
+                                        {currentProject == project.id &&
+                                            <div className="project-description">
+                                                <h1>{Projects[currentProject]?.name}</h1>
+                                                {Projects[currentProject].source && <a href={Projects[currentProject].source} target="_blank">Source</a>}
+                                                {Projects[currentProject].link && <a href={Projects[currentProject].link} target="_blank">Link</a>}
+                                                <p>{Projects[currentProject]?.description}</p>
+                                                <p>Languages/Tools Used:</p>
+                                                <ul>
+                                                    {Projects[currentProject].tools?.map((tool) => {
+                                                        return <li>{tool}</li>
+                                                    })}
+                                                </ul>
+
+                                                {/* {Projects[currentProject].images?.map((image) => {
+                                                return <img src={`projects/${Projects[currentProject]?.name.toLowerCase()}/${image}`} alt={image} className="project-imaged" />
+                                            })} */}
+                                            </div>}
+                                    </div>
+                                );
+                            }
+                        })}
                     </div>
-                    {currentProject > 0 &&
-                        <div className="project-description">
-                            <p>{currentProject}</p>
-                        </div>}
                 </Section>
 
                 <Section name="design" ref={designRef} setCurrentSection={setCurrentSection}>
                     <h1>Design</h1>
                     <div className="project-container">
-                        <div className="project"></div>
-                        <div className="project"></div>
-                        <div className="project"></div>
+                        {Projects.map((project: Project) => {
+                            if (project.id > 3) return (
+                                <div>
+                                    <div
+                                        className={`project ${currentProject == project.id ? "selected-project" : ""}`}
+                                        onClick={() => setCurrentProject(currentProject == project.id ? -1 : project.id)}>
+                                        <div className='block' style={{
+                                            backgroundImage: `url(projects/${project.name.toLowerCase()}/${project.images?.[0]})`,
+                                            backgroundSize: "cover",
+                                        }}></div>
+                                        <div className='text'>{project.name}</div>
+                                    </div>
+                                    {currentProject == project.id &&
+                                        <div className="project-description">
+                                            <h1>{Projects[currentProject]?.name}</h1>
+                                            {Projects[currentProject].source && <a href={Projects[currentProject].source} target="_blank">Source</a>}
+                                            {Projects[currentProject].link && <a href={Projects[currentProject].link} target="_blank">Link</a>}
+                                            <p>{Projects[currentProject]?.description}</p>
+                                            <p>Languages/Tools Used:</p>
+                                            <ul>
+                                                {Projects[currentProject].tools?.map((tool) => {
+                                                    return <li>{tool}</li>
+                                                })}
+                                            </ul>
+
+                                            {/* {Projects[currentProject].images?.map((image) => {
+                                                return <img src={`projects/${Projects[currentProject]?.name.toLowerCase()}/${image}`} alt={image} className="project-imaged" />
+                                            })} */}
+                                        </div>}
+                                </div>
+                            );
+                        })}
                     </div>
-                    {currentProject > 0 &&
-                        <div className="project-description">
-                            <p>{currentProject}</p>
-                        </div>}
                 </Section>
 
                 <Section name="contact" ref={contactRef} setCurrentSection={setCurrentSection}>
@@ -191,4 +284,4 @@ function App() {
     )
 }
 
-export default App
+export default App;
