@@ -12,15 +12,20 @@ import Section from './Section';
 import './styles/App.css';
 // import projectData from '../data/projects.json';
 
+type Image = {
+    src: string;
+    alt: string;
+}
+
 type Project = {
     name: string;
     type: "cs" | "design";
     id: string;
-    description: string;
-    thumbnail?: string;
+    description: string[];
+    thumbnail?: Image;
     source?: string;
     link?: string;
-    images?: string[];
+    images?: Image[];
     tools?: string[];
 }
 
@@ -31,71 +36,96 @@ const Projects: Project[] = [
         name: "Dejumbler",
         type: "cs",
         id: "dejumbler",
-        description: "Full-stack webapp I made to manage my lists of different type of media in one place. Currently, it allows users to create and organize lists of music, movies, and books.",
-        thumbnail: "dejumbler-text-logo.png",
+        description: ["Full-stack webapp I made to manage my lists of different type of media in one place.", "Currently, it allows users to create and organize lists of music, movies, and books."],
+        thumbnail: { src: "dejumbler-text-logo.png", alt: "Dejumbler Logo" },
         source: "https://github.com/anpanring/dejumbler",
         link: "https://dejumbler.com/",
-        images: ["all-lists.png", "mobile-view.png"],
+        images: [
+            { src: "all-lists.png", alt: "All Lists Page" },
+            { src: "mobile-view.png", alt: "Mobile View" },
+            { src: "mobile-screen-recording.gif", alt: "Adding a book to a list" }
+        ],
         tools: ["Javascript/Typescript", "Next.js", "MongoDB & Mongoose for DB", "GSAP for animations", "Spotify, TMDB, Open Library APIs for data"],
     },
     {
         name: "Chatterbox",
         type: "cs",
         id: "chatterbox",
-        description: "Implementation of a forward-secure, end-to-end encrypted messaging client inspired by the Signal protocol. Replicated Signal’s key agreement protocol (X3DH) to establish shared session key between two parties. Ensured resiliency and proper encryption/decryption of out-of-order messages with double ratchet",
-        thumbnail: "go.png",
-        images: [""],
+        description: ["Implementation of a forward-secure, end-to-end encrypted messaging client inspired by the Signal protocol.", "Replicated Signal’s key agreement protocol (X3DH) to establish shared session key between two parties.", "Ensured resiliency and proper encryption/decryption of out-of-order messages with double ratchet"],
+        thumbnail: { src: "go.png", alt: "Golang Logo" },
+        images: [],
         tools: ["Go"]
     },
     {
         name: "Monopoly",
         type: "cs",
         id: "monopoly",
-        description: "A Monopoly game made with a group of friends for a class project. I was responsible for most of the front-end and game logic.",
-        thumbnail: "monopoly.jpg",
+        description: ["A Monopoly game made with a group of friends for a class project.", "I was responsible for most of the front-end and game logic."],
+        thumbnail: { src: "monopoly.jpg", alt: "Monopoly Board" },
         source: "https://github.com/anpanring/monopoly",
-        images: [""],
+        images: [],
         tools: ["Java", "AWT & Swing for GUI"]
     },
     {
         name: "Portfolio",
         type: "cs",
         id: "portfolio",
-        description: "This website! Coded from scratch with responsive performance in mind.",
-        thumbnail: "spider-man.jpg",
+        description: ["This website! Coded from scratch with responsive performance in mind."],
+        thumbnail: { src: "spider-man.jpg", alt: "Spidermen pointing at each other" },
         source: "https://github.com/anpanring/portfolio",
         link: "https://anpanring.github.io/portfolio/",
-        images: [""],
+        images: [],
         tools: ["Typescript", "React", "Vite", "Github Actions for automating deployment"]
     },
     {
         name: "Skint App Concept",
         type: "design",
         id: "skint",
-        description: "The Skint is a website and newsletter dedicated to sharing the best free or cheap events in New York City. To practice my UI/UX skills, I designed an unofficial app concept for the organization.",
-        thumbnail: "skint-logo.png",
-        images: ["Skint-Launch.png", "Skint-Feed.png", "Skint-Event.png"],
+        description: ["The Skint is a website and newsletter dedicated to sharing the best free or cheap events in New York City.", "To practice my UI/UX skills, I designed an unofficial app concept for the organization."],
+        thumbnail: { src: "skint-logo.png", alt: "Skint Logo" },
+        images: [
+            { src: "Skint-Launch.png", alt: "Skint Launch Screen" },
+            { src: "Skint-Feed.png", alt: "Skint Event Feed" },
+            { src: "Skint-Event.png", alt: "Skint Event Page" }
+        ],
         tools: ["Figma"],
     },
     {
         name: "Chord Magazine",
         type: "design",
         id: "chord",
-        description: "A concept for an electronic music magazine. Edited found images and designed layout and typography in InDesign.",
-        thumbnail: "chord-magazine-page-1.png",
-        images: ["chord-magazine-page-1.png", "chord-magazine-page-2.png", "chord-magazine-page-3.png", "chord-magazine-page-4.png", "chord-magazine-page-5.png"],
+        description: ["A concept for an electronic music magazine.", "Edited found images and designed layout and typography in InDesign."],
+        thumbnail: { src: "chord-magazine-page-1.png", alt: "Magazine Cover" },
+        images: [
+            { src: "chord-magazine-page-1.png", alt: "Cover Page" },
+            { src: "chord-magazine-page-2.png", alt: "Page 2" },
+            { src: "chord-magazine-page-3.png", alt: "Page 3" },
+            { src: "chord-magazine-page-4.png", alt: "Page 4" },
+            { src: "chord-magazine-page-5.png", alt: "Page 5" }],
         tools: ["Adobe InDesign", "Adobe Illustrator"],
     },
     {
         name: "Custom Font",
         type: "design",
         id: "font",
-        description: "A custom, blocky font I designed for a class project. I wanted to create a font with as few lines as possible while still being legible. Used Glyphs Mini to design each character.",
-        thumbnail: "font-thumbnail.png",
-        images: ["jackD_font.png"],
+        description: ["A custom, blocky font I designed for a class project.", "I wanted to create a font with as few lines as possible while still being legible."],
+        thumbnail: { src: "font-thumbnail.png", alt: "Custom Font Thumbnail" },
+        images: [{ src: "jackD_font.png", alt: "Custom Font" }],
         tools: ["Glyphs Mini", "Adobe Illustrator"],
     },
 ]
+
+function Image({currentProjectId, image}: {currentProjectId: string, image: Image}) {
+    // const [fullscreen, setFullscreen] = useState<boolean>(false);
+
+    return (
+        // <div onClick={() => setFullscreen(!fullscreen)} className={fullscreen ? "fullscreen" : ""}>
+        <div>
+            <img src={`design/${currentProjectId.toLowerCase()}/${image.src}`} alt={image.alt} className="project-image" />
+            <p>{image.alt}</p>
+        </div>
+    )
+}
 
 function App() {
     const [currentProject, setCurrentProject] = useState<Project | null>(null);
@@ -116,14 +146,6 @@ function App() {
             opacity: 0,
             duration: 0.3,
         });
-
-        // return () => {
-        //     gsap.to(".project-description", {
-        //         y: "-20",
-        //         opacity: 0,
-        //         duration: 0.1,
-        //     });
-        // }
     }, [currentProject]);
 
     useGSAP(() => {
@@ -179,13 +201,6 @@ function App() {
     //         observer.observe(contactRef.current);
     //     }
 
-    //     window.addEventListener("scroll", function () {
-    //         setProjectsHeight(projectsRef.current ? projectsRef.current.getBoundingClientRect().y : 0);
-    //     });
-
-    //     // if intersecting > 50%, increment current section
-    // }, []);
-
     // useGSAP(() => {
     //     const el = projects.current;
     //     gsap.from(el,
@@ -210,7 +225,6 @@ function App() {
 
     return (
         <div id="container">
-            {/* <NavContext.Provider> */}
             <nav ref={navRef}>
                 <ul className="navbar">
                     {/* {navs.map((nav) => {
@@ -274,7 +288,7 @@ function App() {
                                                 onClick={() => setCurrentProject(currentProject == project ? null : project)}>
 
                                                 <div className="project-thumb-image" style={{
-                                                    backgroundImage: `url(projects/${project.id.toLowerCase()}/${project.thumbnail})`,
+                                                    backgroundImage: `url(projects/${project.id.toLowerCase()}/${project.thumbnail?.src})`,
                                                     backgroundSize: "cover",
                                                 }}></div>
 
@@ -290,10 +304,12 @@ function App() {
                                                                 {currentProject.link && currentProject.source && <span>,&nbsp;</span>}
                                                                 {currentProject.source && <a href={currentProject.source} className="project-link" target="_blank">Source</a>}
                                                             </p>
-                                                            <p>{currentProject.description}</p>
+                                                            {currentProject.description.map((paragraph) => {
+                                                                return <p>{paragraph}</p>
+                                                            })}
 
                                                             <div className="project-tools">
-                                                                <p>Languages/Tools Used:</p>
+                                                                <p><u>Languages/Tools Used:</u></p>
                                                                 {currentProject.tools?.map((tool) => {
                                                                     return <p>- {tool}</p>
                                                                 })}
@@ -301,7 +317,10 @@ function App() {
                                                         </div>
                                                         <div className="project-images-container">
                                                             {currentProject.images?.map((image) => {
-                                                                return <img src={`projects/${currentProject.id.toLowerCase()}/${image}`} alt={image} className="project-image" />
+                                                                return <div>
+                                                                    <img src={`projects/${currentProject.id.toLowerCase()}/${image.src}`} alt={image.alt} className="project-image" />
+                                                                    <p>{image.alt}</p>
+                                                                </div>
                                                             })}
                                                         </div>
                                                     </div>
@@ -324,7 +343,7 @@ function App() {
                                             className={`project-thumbnail ${currentProject == project ? "selected-project" : ""}`}
                                             onClick={() => setCurrentProject(currentProject == project ? null : project)}>
                                             <div className="project-thumb-image" style={{
-                                                backgroundImage: `url(design/${project.id.toLowerCase()}/${project.thumbnail})`,
+                                                backgroundImage: `url(design/${project.id.toLowerCase()}/${project.thumbnail?.src})`,
                                                 backgroundSize: "cover",
                                             }}></div>
                                             <div className="project-thumb-text">{project.name}</div>
@@ -336,10 +355,12 @@ function App() {
                                                     <div className="project-text">
                                                         {currentProject.source && <a href={currentProject.source} target="_blank">Source</a>}
                                                         {currentProject.link && <a href={currentProject.link} target="_blank">Link</a>}
-                                                        <p>{currentProject.description}</p>
+                                                        {currentProject.description.map((paragraph) => {
+                                                            return <p>{paragraph}</p>
+                                                        })}
 
                                                         <div className="project-tools">
-                                                            <p>Tools Used:</p>
+                                                            <p><u>Tools Used:</u></p>
                                                             {currentProject.tools?.map((tool) => {
                                                                 return <p>- {tool}</p>
                                                             })}
@@ -347,7 +368,13 @@ function App() {
                                                     </div>
                                                     <div className="project-images-container">
                                                         {currentProject.images?.map((image) => {
-                                                            return <img src={`design/${currentProject.id.toLowerCase()}/${image}`} alt={image} className="project-image" />
+                                                            return (
+                                                                // <Image currentProjectId={currentProject.id} image={image} />
+                                                                <div>
+                                                                    <img src={`design/${currentProject.id.toLowerCase()}/${image.src}`} alt={image.alt} className="project-image" />
+                                                                    <p>{image.alt}</p>
+                                                                </div>
+                                                            );
                                                         })}
                                                     </div>
                                                 </div>
@@ -361,11 +388,9 @@ function App() {
             </div>
 
             <footer>
-                {/* <hr /> */}
                 <img src="spinnylogo.gif" alt="loading" className="spinny-logo" />
                 <p className="footer-text">Jack Dempsey, last edited 3/3/2024</p>
             </footer>
-            {/* </NavContext.Provider> */}
         </div>
     )
 }
