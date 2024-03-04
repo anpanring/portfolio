@@ -20,7 +20,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
             window.addEventListener("scroll", () => {
                 setHeight(refObject.current ?
                     refObject.current.getBoundingClientRect().y : Number.MAX_VALUE);
-                if (height < 70) setCurrentSection(navs.indexOf(name));
+                if (height < 200) setCurrentSection(navs.indexOf(name));
             });
         });
 
