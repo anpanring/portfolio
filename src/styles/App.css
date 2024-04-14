@@ -297,15 +297,16 @@ a.project-link:hover {
     gap: 0.5em;
     max-width: 70%;
     overflow-x: scroll;
+    /* flex: 1.5; */
+}
+
+.project-images-container p {
+    text-align: center;
 }
 
 .project-image {
     max-height: 20em;
     transition: 0.5s;
-}
-
-.project-images-container p {
-    text-align: center;
 }
 
 div.fullscreen {
