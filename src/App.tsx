@@ -214,6 +214,7 @@ function App() {
             <p>Hi, I'm Jack! I'm currently a senior at NYU studying Computer Science, with minors in Psychology and Studio Art.
               I will be graduating in May 2024 and am currently searching for software engineering opportunities.
             </p>
+            <p>I interned at Google during the summers of 2022 and 2023, and will be joining Spotify for an internship this upcoming summer.</p>
             <p>I love learning and currently have interests in front-end development, computer security, and graphic design.</p>
             <p>In my personal time, I enjoy playing soccer, listening to music, and skateboarding.</p>
             <p>Contacts:&nbsp;
@@ -350,7 +351,7 @@ function App() {
 
       <footer>
         <img src="spinnylogo.gif" alt="loading" className="spinny-logo" />
-        <p className="footer-text">Jack Dempsey, last edited 4/14/2024</p>
+        <p className="footer-text">Jack Dempsey, last edited 5/11/2024</p>
       </footer>
     </div>
   )
