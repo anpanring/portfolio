@@ -4,7 +4,7 @@ body {
     --main-bg-color: #023020;
     --main-text-color: beige;
     --link-color: #9FE2BF;
-    --max-width: 100%;
+    --max-width: 50em;
     --control-margin: 5.5rem;
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
@@ -119,7 +119,7 @@ nav {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
-    padding: 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
     margin: 0;
 }
 
