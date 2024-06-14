@@ -191,17 +191,18 @@ function App() {
       <nav ref={navRef}>
         <ul className="navbar">
           <li className="left-nav">
-            <a id="home-link" href="#home" className={navs[currentSection] == "home" ? 'selected' : ''}>
-              <span>Jack Dempsey</span>
+            <a id="home-link" href="#home" className={navs[currentSection] == "home" ? 'selected' : ''} tabIndex={0}>
+              <span className="long-name">Jack Dempsey</span>
+              <span className="short-name">Jack D.</span>
             </a>
           </li>
           <li className="center-nav">
-            <a id="projects-link" href="#projects" className={navs[currentSection] == "projects" ? 'selected' : ''}>
+            <a id="projects-link" href="#projects" className={navs[currentSection] == "projects" ? 'selected' : ''} tabIndex={0}>
               <span>Projects</span>
             </a>
           </li>
           <li className="right-nav">
-            <a id="design-link" href="#design" className={navs[currentSection] == "design" ? 'selected' : ''}>
+            <a id="design-link" href="#design" className={navs[currentSection] == "design" ? 'selected' : ''} tabIndex={0}>
               <span>Design</span>
             </a>
           </li>
@@ -215,8 +216,8 @@ function App() {
               I will be graduating in May 2024 and am currently searching for software engineering opportunities.
             </p>
             <p>I interned at Google during the summers of 2022 and 2023, and will be joining Spotify for an internship this upcoming summer.</p>
-            <p>I love learning and currently have interests in front-end development, computer security, and graphic design.</p>
-            <p>In my personal time, I enjoy playing soccer, listening to music, and skateboarding.</p>
+            <p>I love learning and currently have interests in front-end development, computer security, and design systems/engineering.</p>
+            <p>In my personal time, I enjoy playing soccer, <a className="contact-link" href='https://open.spotify.com/user/anpanring'>listening to music</a>, and skateboarding.</p>
             <p>Contacts:&nbsp;
               <a className="contact-link" href="https://www.linkedin.com/in/jack-i-dempsey/" target="_blank">LinkedIn</a>,&nbsp;
               <a className="contact-link" href="https://github.com/anpanring" target="_blank">Github</a>,&nbsp;

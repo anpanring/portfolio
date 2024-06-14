@@ -90,14 +90,14 @@ h1 {
         font-size: 1.25em;
     }
 
-    .content {
+    /* .content {
         margin: 7rem 1rem 0;
     }
 
     #home {
         height: calc(100vh - 7rem);
         scroll-margin-top: 7rem;
-    }
+    } */
 }
 
 
@@ -162,9 +162,21 @@ nav span:hover,
     justify-self: center;
 }
 
+.short-name {
+    display: none;
+}
+
 @media (max-width: 600px) {
     .selected {
         /* font-size: 1.5em; */
+    }
+
+    .long-name {
+        display: none;
+    }
+
+    .short-name {
+        display: block;
     }
 }
 
