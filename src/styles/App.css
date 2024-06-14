@@ -8,7 +8,7 @@ body {
     --control-margin: 5.5rem;
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
-    font-family: "Arial Narrow";
+    font-family: "Arial Narrow", sans-serif;
     margin: 0;
 }
 

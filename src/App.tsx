@@ -352,7 +352,7 @@ function App() {
 
       <footer>
         <img src="spinnylogo.gif" alt="loading" className="spinny-logo" />
-        <p className="footer-text">Jack Dempsey, last edited 5/11/2024</p>
+        <p className="footer-text">~~ Jack Dempsey | 泉一朗 | last edited 6/13/2024 ~~</p>
       </footer>
     </div>
   )
