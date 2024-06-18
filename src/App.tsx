@@ -211,18 +211,20 @@ function App() {
 
       <div className="content">
         <Section name="home" ref={homeRef} setCurrentSection={setCurrentSection}>
-          <div className="profile-text">
-            <p>Hi, I'm Jack! I'm currently a senior at NYU studying Computer Science, with minors in Psychology and Studio Art.
-              I will be graduating in May 2024 and am currently searching for software engineering opportunities.
-            </p>
-            <p>I interned at Google during the summers of 2022 and 2023, and will be joining Spotify for an internship this upcoming summer.</p>
-            <p>I love learning and currently have interests in front-end development, computer security, and design systems/engineering.</p>
-            <p>In my personal time, I enjoy playing soccer, <a className="contact-link" href='https://open.spotify.com/user/anpanring'>listening to music</a>, and skateboarding.</p>
-            <p>Contacts:&nbsp;
+          <div className="profile-text-container">
+            <div className="profile-text">
+              <p>Hi, I'm Jack! I'm currently a senior at NYU studying Computer Science, with minors in Psychology and Studio Art.
+                I will be graduating in May 2024 and am currently searching for software engineering opportunities.
+              </p>
+              <p>I interned at Google during the summers of 2022 and 2023, and will be joining Spotify for an internship this upcoming summer.</p>
+              <p>I love learning and currently have interests in front-end development, computer security, and design systems/engineering.</p>
+              <p>In my personal time, I enjoy playing soccer, <a className="contact-link" href='https://open.spotify.com/user/anpanring'>listening to music</a>, and skateboarding.</p>
+            </div>
+            <p className="contact-links"><span className='contacts-text'>Contacts:&nbsp;</span>
               <a className="contact-link" href="https://www.linkedin.com/in/jack-i-dempsey/" target="_blank">LinkedIn</a>,&nbsp;
               <a className="contact-link" href="https://github.com/anpanring" target="_blank">Github</a>,&nbsp;
               <a className="contact-link" href="mailto:jdempsey2024@gmail.com" target="_blank">Email</a>,&nbsp;
-              <a className="contact-link" href="https://drive.google.com/file/d/1ryhkUWJUDHuiPR6aCyXLIfDjthUAyVLG/view?usp=sharing" target="_blank">Resume</a>.
+              <a className="contact-link" href="https://drive.google.com/file/d/1ryhkUWJUDHuiPR6aCyXLIfDjthUAyVLG/view?usp=sharing" target="_blank">Resume</a>
             </p>
           </div>
         </Section>
@@ -352,7 +354,7 @@ function App() {
 
       <footer>
         <img src="spinnylogo.gif" alt="loading" className="spinny-logo" />
-        <p className="footer-text">~~ Jack Dempsey | 泉一朗 | last edited 6/13/2024 ~~</p>
+        <p className="footer-text">~~ 泉一朗 | <a className="footer-link" href="https://github.com/anpanring/portfolio">last edited</a> 6/17/2024 ~~</p>
       </footer>
     </div>
   )

@@ -8,7 +8,7 @@ body {
     --control-margin: 5.5rem;
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
-    font-family: "Arial Narrow", sans-serif;
+    font-family: "Arial Narrow", Helvetica, sans-serif;
     margin: 0;
 }
 
@@ -71,7 +71,17 @@ footer {
 }
 
 .footer-text {
+    color: yellowgreen;
     text-align: center;
+}
+
+.footer-link {
+    color: yellowgreen;
+}
+
+.footer-link:hover {
+    background-color: yellowgreen;
+    color: var(--main-bg-color);
 }
 
 .spinny-logo {
@@ -88,6 +98,17 @@ h1 {
 @media (max-width: 735px) {
     .profile-text p {
         font-size: 1.25em;
+    }
+
+    .profile-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .contacts-text {
+        display: none;
     }
 
     /* .content {
@@ -166,7 +187,7 @@ nav span:hover,
     display: none;
 }
 
-@media (max-width: 600px) {
+@media (width < 600px) {
     .selected {
         /* font-size: 1.5em; */
     }
@@ -195,6 +216,11 @@ nav span:hover,
     gap: 0.5rem;
 }
 
+.contact-links {
+    padding-bottom: 2em;
+    font-size: 1.5em;
+}
+
 a.contact-link {
     color: lightblue;
     width: fit-content;
@@ -203,6 +229,12 @@ a.contact-link {
 a.contact-link:hover {
     background-color: lightblue;
     color: var(--main-bg-color);
+}
+
+@media (width < 600px) {
+    .contact-links {
+        font-size: 1.25em;
+    }
 }
 
 
