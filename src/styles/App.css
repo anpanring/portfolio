@@ -6,6 +6,7 @@ body {
     --link-color: #9FE2BF;
     --max-width: 50em;
     --control-margin: 5.5rem;
+    --font-size: 1.5em;
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
     font-family: "Arial Narrow", Helvetica, sans-serif;
@@ -48,7 +49,7 @@ body {
 
 .profile-text p {
     margin: 0;
-    font-size: 1.5em;
+    font-size: var(--font-size);
 }
 
 .profile-text {
@@ -96,8 +97,18 @@ h1 {
 
 /* Mobile */
 @media (max-width: 735px) {
-    .profile-text p {
-        font-size: 1.25em;
+    html,
+    body {
+        --font-size: 1.25em;
+    }
+
+    #home {
+        height: calc(100dvh - var(--control-margin));
+    }
+
+    article {
+        scroll-margin-top: var(--control-margin);
+        min-height: calc(100dvh - var(--control-margin));
     }
 
     .profile-text-container {
@@ -110,15 +121,6 @@ h1 {
     .contacts-text {
         display: none;
     }
-
-    /* .content {
-        margin: 7rem 1rem 0;
-    }
-
-    #home {
-        height: calc(100vh - 7rem);
-        scroll-margin-top: 7rem;
-    } */
 }
 
 
@@ -188,10 +190,6 @@ nav span:hover,
 }
 
 @media (width < 600px) {
-    .selected {
-        /* font-size: 1.5em; */
-    }
-
     .long-name {
         display: none;
     }
@@ -205,7 +203,7 @@ nav span:hover,
 /* Sections */
 .section-description {
     margin-top: 0;
-    font-size: 1.25em;
+    font-size: var(--font-size);
 }
 
 
@@ -217,7 +215,7 @@ nav span:hover,
 }
 
 .contact-links {
-    padding-bottom: 2em;
+    padding-bottom: 4em;
     font-size: 1.5em;
 }
 
