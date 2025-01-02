@@ -185,6 +185,16 @@ function App() {
     })
   });
 
+  function changeTheme() {
+    const body = document.querySelector("body");
+    if (body?.getAttribute("data-theme") === "green") {
+      body.setAttribute("data-theme", "light");
+    } else {
+      body?.setAttribute("data-theme", "green");
+    }
+    console.log(body?.getAttribute("data-theme"));
+  }
+
   return (
     <div id="container">
       {/* Navbar */}
@@ -192,8 +202,8 @@ function App() {
         <ul className="navbar">
           <li className="left-nav">
             <a id="home-link" href="#home" className={navs[currentSection] == "home" ? 'selected' : ''} tabIndex={0}>
-              <span className="long-name">Jack Dempsey</span>
-              <span className="short-name">Jack D.</span>
+              <span className="long-name">Home</span>
+              <span className="short-name">Home</span>
             </a>
           </li>
           <li className="center-nav">
@@ -353,7 +363,7 @@ function App() {
       </div>
 
       <footer>
-        <img src="spinnylogo.gif" alt="loading" className="spinny-logo" />
+        <img onClick={changeTheme} src="spinnylogo.gif" alt="loading" className="spinny-logo" />
         <p className="footer-text">~~ 泉一朗 | <a className="footer-link" href="https://github.com/anpanring/portfolio">last edited</a> 6/17/2024 ~~</p>
       </footer>
     </div>
